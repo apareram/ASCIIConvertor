@@ -1,9 +1,7 @@
-#define STB_IMAGE_IMPLEMENTATION
-#include "../lib/stb_image.h"
 #include "tipos.h"
-#include <stdio.h>
+#define STB_IMAGE_IMPLEMENTATION
 
-const char* ASCII_CHARS = " .:-=+*#%@";
+const char* ASCII_CHARS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
 
 Imagen cargarImagen(char ruta[]) {
     Imagen img;
@@ -23,13 +21,15 @@ void convertirImagen(Imagen img, int anchoMax) {
         escala = img.ancho / anchoMax;
     }
 
+    int num_caracteres = strlen(ASCII_CHARS);
+
     for (int y = 0; y < img.alto; y += (escala * 2)) {
         for (int x = 0; x < img.ancho; x += escala) {
+            unsigned char brillo = img.pixeles[y * img.ancho + x];
             
-            int index = y * img.ancho + x;
-            unsigned char brillo = img.pixeles[index];
+            // Fórmula general: (brillo / 255.0) * (cantidad_caracteres - 1)
+            int char_index = (brillo * (num_caracteres - 1)) / 255;
             
-            int char_index = brillo * 9 / 255;
             putchar(ASCII_CHARS[char_index]);
         }
         putchar('\n');

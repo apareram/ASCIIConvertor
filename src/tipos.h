@@ -1,5 +1,7 @@
-#ifndef TIPOS_H
-#define TIPOS_H
+#include <stdio.h>
+// #define STB_IMAGE_IMPLEMENTATION
+#include "../lib/stb_image.h"
+#include <string.h>
 
 typedef struct {
     unsigned char *pixeles;
@@ -12,5 +14,3 @@ typedef struct {
 Imagen cargarImagen(char ruta[]);
 void convertirImagen(Imagen img, int ancho);
 void liberarImagen(Imagen img);
-
-#endif

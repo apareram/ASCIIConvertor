@@ -1,8 +1,5 @@
 #include "tipos.h"
 
-#include <stdio.h>
-#include "tipos.h"
-
 int main(int argc, char** argv) {
     char rutaImag[100];
     int ancho = 100;
